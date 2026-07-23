@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'brownshell_app',
     'customers',
+    'suppliers',
+    'inventory',
+    'purchases',
     'rest_framework'
 ]
 
