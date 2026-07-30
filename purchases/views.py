@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Purchases
+from .models import Purchase
 from .serializers import PurchaseSerialiazer
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,7 +13,7 @@ from .serializers import PurchaseItemSerializer
 
 def purchase_list(request):
     if request.method == "GET":
-        purchases = Purchases.objects.all()
+        purchases = Purchase.objects.all()
         serializer = PurchaseSerialiazer(purchases, many=True)
         return Response(serializer.data)
 
@@ -28,8 +28,8 @@ def purchase_list(request):
 @api_view(["GET","PUT", "DELETE"])
 def purchase_detail(request, id):
     try:
-        purchase = Purchases.objects.get(id=id)
-    except Purchases.DoesNotExist:
+        purchase = Purchase.objects.get(id=id)
+    except Purchase.DoesNotExist:
         return Response(
             {"error": "Purchase not found"},
             status=status.HTTP_404_NOT_FOUND
